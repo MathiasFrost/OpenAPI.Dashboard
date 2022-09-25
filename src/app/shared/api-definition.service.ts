@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of, tap } from "rxjs";
 import { EndpointDefinition } from "./endpoint-definition";
-import { LogService } from "../../core/log.service";
+import { LogService } from "../core/log.service";
 
 @Injectable({
 	providedIn: "root"
 })
-export class ApiDescriptionService
+export class ApiDefinitionService
 {
 	private baseUrl: string = "https://localhost:5001/V1/Test";
 	

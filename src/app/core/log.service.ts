@@ -9,11 +9,13 @@ export class LogService
 	
 	public add(log: string): void
 	{
+		console.log(log);
 		this.logs.push(log);
 	}
 	
 	public clear(): void
 	{
+		console.log("Logs cleared");
 		this.logs = [];
 	}
 }

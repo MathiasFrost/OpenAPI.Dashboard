@@ -17,5 +17,5 @@ export enum TypeCode
 	Double = 14,        // IEEE 64-bit double
 	Decimal = 15,       // Decimal
 	DateTime = 16,      // DateTime
-	String = 18,        // Unicode character string
+	String = 18,        // Unicode character
 }

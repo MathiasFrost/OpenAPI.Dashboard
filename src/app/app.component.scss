@@ -1,0 +1,108 @@
+@use "src/style/variables";
+
+.table
+{
+	width: 100%;
+	border-collapse: collapse;
+	
+	tr
+	{
+		background-color: variables.$secondary;
+		
+		&:hover
+		{
+			background-color: variables.$secondary-light;
+		}
+		
+		&:last-child
+		{
+			td
+			{
+				border-bottom-color: variables.$muted;
+			}
+		}
+	}
+	
+	th
+	{
+		font-size: smaller;
+		text-align: left;
+		color: variables.$muted;
+		border-color: variables.$dim;
+		border-bottom-color: variables.$muted;
+		border-style: solid;
+		border-bottom-width: 2px;
+		border-top-width: 1px;
+		border-right-style: none;
+		
+		&:first-child
+		{
+			border-left-style: none;
+		}
+	}
+	
+	td, th
+	{
+		padding: 0.4rem 0.8rem;
+	}
+	
+	td
+	{
+		font-size: small;
+		border: 1px solid variables.$dim;
+		border-right-style: none;
+		
+		&:first-child
+		{
+			border-left-style: none;
+		}
+	}
+}
+
+.method-badge
+{
+	border-right-width: 1px;
+	border-right-style: solid;
+	width: 2rem;
+	margin-right: 1rem;
+	
+	&.get
+	{
+		border-color: blueviolet;
+	}
+	
+	&.post
+	{
+		border-color: cyan;
+	}
+	
+	&.put
+	{
+		border-color: deeppink;
+	}
+	
+	&.patch
+	{
+		border-color: palegreen;
+	}
+	
+	&.delete
+	{
+		border-color: crimson;
+	}
+	
+	&.head
+	{
+		border-color: ghostwhite;
+	}
+	
+	&.options
+	{
+		border-color: orangered;
+	}
+	
+	&.unknown
+	{
+		border-color: gray;
+	}
+}
