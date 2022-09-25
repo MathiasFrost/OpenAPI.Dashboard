@@ -1,0 +1,22 @@
+<main>
+	<h1>ASP.NET Core API Dashboard</h1>
+	<ul *ngFor="let endpoint of endpoints">
+		<li>{{endpoint.httpMethod}}: {{endpoint.relativePath}}</li>
+	</ul>
+	<table>
+		<thead>
+		<tr>
+			<th>Method</th>
+			<th>Path</th>
+			<th>Return</th>
+		</tr>
+		</thead>
+		<tbody *ngFor="let endpoint of endpoints">
+		<tr>
+			<td>{{endpoint.httpMethod}}</td>
+			<td>{{endpoint.relativePath}}</td>
+			<td>{{endpoint.returnsDefinition.typeDefinition.typeCode}}</td>
+		</tr>
+		</tbody>
+	</table>
+</main>
