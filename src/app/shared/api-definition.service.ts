@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of, tap } from "rxjs";
+import { environment } from "../../environments/environment";
 import { EndpointDefinition } from "./endpoint-definition";
 import { LogService } from "../core/log.service";
 
@@ -9,7 +10,7 @@ import { LogService } from "../core/log.service";
 })
 export class ApiDefinitionService
 {
-	private baseUrl: string = "https://localhost:5001/V1/Test";
+	private baseUrl: string = environment.backendUrl;
 	
 	private httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
 	
@@ -19,7 +20,7 @@ export class ApiDefinitionService
 	
 	public getApiDefinition(): Observable<EndpointDefinition[]>
 	{
-		return this.http.get<EndpointDefinition[]>(`${this.baseUrl}/Endpoints`, this.httpOptions)
+		return this.http.get<EndpointDefinition[]>(`${this.baseUrl}/V1/Test/Endpoints`, this.httpOptions)
 			.pipe(
 				tap(_ => this.log.add("Endpoints fetched")),
 				catchError(this.handleError<EndpointDefinition[]>(this.getApiDefinition.name, [])));

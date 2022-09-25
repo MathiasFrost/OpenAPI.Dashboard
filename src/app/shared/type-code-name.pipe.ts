@@ -3,9 +3,9 @@ import { TypeCode } from "./type-code";
 import { TypeDefinition } from "./type-definition";
 
 @Pipe({
-	name: "typeCodeName"
+	name: "typeName"
 })
-export class TypeCodeNamePipe implements PipeTransform
+export class TypeNamePipe implements PipeTransform
 {
 	transform(value: TypeDefinition, ...args: never[]): string
 	{
