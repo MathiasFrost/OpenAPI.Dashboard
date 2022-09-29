@@ -1,4 +1,4 @@
-import { TypeDefinition } from "./type-definition";
+import { TypeDefinition } from "~/models/TypeDefinition";
 
 export interface ReturnDefinition
 {
