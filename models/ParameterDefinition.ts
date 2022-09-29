@@ -1,5 +1,5 @@
-import { LengthDefinition } from "./length-definition";
-import { TypeDefinition } from "./type-definition";
+import { LengthDefinition } from "~/models/LengthDefinition";
+import { TypeDefinition } from "~/models/TypeDefinition";
 
 export interface ParameterDefinition
 {
