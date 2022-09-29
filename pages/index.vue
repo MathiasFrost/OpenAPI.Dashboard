@@ -7,7 +7,8 @@
 			</ul>
 		</div>
 		<p class="text-gray-300" v-if="pending">Loading...</p>
-		<table v-if="!pending" class="table">
+		<pre class="text-red-500" v-else-if="error">{{JSON.stringify(error, null, 4)}}</pre>
+		<table v-else class="table">
 			<thead>
 			<tr>
 				<th>Method</th>
@@ -37,8 +38,8 @@
 </template>
 
 <script lang="ts" setup>
-import {getTypeName} from "~/models/TypeCode";
 import { EndpointDefinition } from "~/models/EndpointDefinition";
+import { getTypeName } from "~/models/TypeCode";
 
 const config = useRuntimeConfig().public;
 

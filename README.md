@@ -1,42 +1,13 @@
-# Nuxt 3 Minimal Starter
+# AspNetCore.Dashboard.Browser - _Nuxt_
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Simple, clean API Definition UI for ASP.NET Core
 
-## Setup
+Backend: [AspNetCore.Dashboard](https://github.com/MathiasFrost/AspNetCore.Dashboard)
 
-Make sure to install the dependencies:
+## Committing
 
-```bash
-# yarn
-yarn install
+Important to run this before committing _(assuming you have GPG key set up)_
 
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
+```shell
+git config commit.gpgsign true
 ```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
