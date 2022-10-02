@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 	sourcemap: true,
 	runtimeConfig: {
 		public: {
-			BACKEND_URL: "https://localhost:5001"
+			BACKEND_URL: "http://localhost:5000"
 		}
 	}
 });
