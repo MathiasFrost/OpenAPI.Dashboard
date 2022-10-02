@@ -1,7 +1,7 @@
 <template>
 <main>
-	<div class="p-3">
-		<h1 class="text-2xl">ASP.NET Core API Dashboard</h1>
+	<div class="p-6">
+		<h1 class="text-3xl font-light tracking-wide">ASP.NET Core API Dashboard</h1>
 	</div>
 	<p v-if="pending" class="text-gray-300">Loading...</p>
 	<pre v-else-if="error" class="text-red-500">{{ JSON.stringify(error, null, 4) }}</pre>
@@ -16,14 +16,7 @@
 		<tbody>
 		<tr v-for="endpoint in endpoints">
 			<td>
-				<span v-if="endpoint.httpMethod === 'GET'" class="method-badge get"></span>
-				<span v-else-if="endpoint.httpMethod === 'POST'" class="method-badge post"></span>
-				<span v-else-if="endpoint.httpMethod === 'PUT'" class="method-badge put"></span>
-				<span v-else-if="endpoint.httpMethod === 'PATCH'" class="method-badge patch"></span>
-				<span v-else-if="endpoint.httpMethod === 'DELETE'" class="method-badge delete"></span>
-				<span v-else-if="endpoint.httpMethod === 'HEAD'" class="method-badge head"></span>
-				<span v-else-if="endpoint.httpMethod === 'OPTIONS'" class="method-badge options"></span>
-				<span v-else class="method-badge unknown"></span>
+				<span class="method-badge" :class="endpoint.httpMethod?.toLowerCase() ?? 'unknown'"></span>
 				<b>{{ endpoint.httpMethod }}</b>
 			</td>
 			<td>{{ endpoint.relativePath }}</td>
@@ -46,7 +39,6 @@ const {
 	refresh,
 	error
 } = await useFetch<EndpointDefinition[]>(() => "/V1/Test/Endpoints", { baseURL: config.BACKEND_URL });
-refresh();
 </script>
 
 <style lang="stylus" scoped>
@@ -59,12 +51,14 @@ refresh();
 	tr
 		background-color: secondary
 
-		&:hover
-			background-color: secondary-light
-
 		&:last-child
 			td
 				border-bottom-color: muted
+
+	tbody
+		tr:hover
+			background-color: secondary-light
+
 
 	th
 		font-size: smaller
