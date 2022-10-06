@@ -1,29 +1,18 @@
 <component name="InspectionProjectProfileManager">
-	<profile version="1.0">
-		<option name="myName" value="Project Default" />
-		<option name="scopesOrder">
-			<list>
-				<option value="All Changed Files" />
-				<option value="Lockfiles" />
-				<option value="Open Files" />
-				<option value="Project Files" />
-				<option value="Scratches and Consoles" />
-				<option value="Tests" />
-			</list>
-		</option>
-		<inspection_tool class="JSUnusedGlobalSymbols"
-				enabled="true"
-				level="INFORMATION"
-				enabled_by_default="true"
-				editorAttributes="INFORMATION_ATTRIBUTES" />
-		<inspection_tool class="JSXNamespaceValidation"
-				enabled="false"
-				level="WEAK WARNING"
-				enabled_by_default="false" />
-		<inspection_tool class="TypeScriptUnresolvedFunction"
-				enabled="true"
-				level="INFORMATION"
-				enabled_by_default="true"
-				editorAttributes="INFORMATION_ATTRIBUTES" />
-	</profile>
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <option name="scopesOrder">
+      <list>
+        <option value="All Changed Files" />
+        <option value="Lockfiles" />
+        <option value="Open Files" />
+        <option value="Project Files" />
+        <option value="Scratches and Consoles" />
+        <option value="Tests" />
+      </list>
+    </option>
+    <inspection_tool class="JSUnusedGlobalSymbols" enabled="true" level="INFORMATION" enabled_by_default="true" editorAttributes="INFORMATION_ATTRIBUTES" />
+    <inspection_tool class="JSXNamespaceValidation" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="TypeScriptUnresolvedFunction" enabled="false" level="INFORMATION" enabled_by_default="false" editorAttributes="INFORMATION_ATTRIBUTES" />
+  </profile>
 </component>

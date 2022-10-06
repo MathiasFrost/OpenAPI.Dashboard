@@ -1,10 +1,11 @@
 <template>
-<main>
-	<div class="p-6">
+<main style="transition-property: filter" class="duration-300" :class="bgClass">
+	<div class="p-6 flex justify-between">
 		<h1 class="text-3xl font-light tracking-wide">ASP.NET Core API Dashboard</h1>
+		<button class="bg-pink-600 hover:bg-pink-500 rounded pt-1 pb-1 pr-3 pl-3" v-on:click="toggle">Toggle</button>
 	</div>
 	<p v-if="pending" class="text-gray-300">Loading...</p>
-	<pre v-else-if="error" class="text-red-500">{{ JSON.stringify(error, null, 4) }}</pre>
+	<pre v-else-if="error" class="text-red-500 bg-gray-900 p-3">{{ JSON.stringify(error, null, 4) }}</pre>
 	<table v-else class="table">
 		<thead>
 		<tr>
@@ -24,6 +25,8 @@
 		</tr>
 		</tbody>
 	</table>
+
+	<Modal ref="modal"></Modal>
 </main>
 </template>
 
@@ -32,6 +35,13 @@ import { EndpointDefinition } from "~/models/EndpointDefinition";
 import { getTypeName } from "~/models/TypeCode";
 
 const config = useRuntimeConfig().public;
+const modal = ref(null);
+const bgClass = computed(() => ({ "blur-sm": modal.value && modal.value.show }));
+
+function toggle()
+{
+	modal.value.toggle();
+}
 
 const {
 	data: endpoints,
@@ -58,7 +68,6 @@ const {
 	tbody
 		tr:hover
 			background-color: secondary-light
-
 
 	th
 		font-size: smaller
