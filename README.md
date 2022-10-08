@@ -1,4 +1,4 @@
-# AspNetCore.Dashboard.Browser - _Nuxt_
+# AspNetCore.Dashboard.Browser - _SvelteKit_
 
 Simple, clean API Definition UI for ASP.NET Core
 

@@ -1,7 +1,6 @@
-import { TypeCode } from "~/models/TypeCode";
+import type { TypeCode } from "./TypeCode";
 
-export interface TypeDefinition
-{
+export interface TypeDefinition {
 	typeCode: TypeCode;
 
 	isArray: boolean;

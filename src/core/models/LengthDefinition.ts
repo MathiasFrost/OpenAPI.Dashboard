@@ -1,5 +1,4 @@
-export interface LengthDefinition
-{
+export interface LengthDefinition {
 	maxLength: number;
 
 	minLength: number;

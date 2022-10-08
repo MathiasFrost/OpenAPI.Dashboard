@@ -1,11 +1,8 @@
+.DS_Store
 node_modules
-*.log*
-.nuxt
-.nitro
-.cache
-.output
+/build
+/.svelte-kit
+/package
 .env
-dist
-
-# localhost cert
-cert
+.env.*
+!.env.example

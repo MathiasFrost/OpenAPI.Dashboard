@@ -1,8 +1,7 @@
-import { LengthDefinition } from "~/models/LengthDefinition";
-import { TypeDefinition } from "~/models/TypeDefinition";
+import type { LengthDefinition } from "./LengthDefinition";
+import type { TypeDefinition } from "./TypeDefinition";
 
-export interface ParameterDefinition
-{
+export interface ParameterDefinition {
 	name: string;
 
 	typeDefinition: TypeDefinition;

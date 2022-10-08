@@ -1,33 +1,33 @@
 <template>
-<main style="transition-property: filter" class="duration-300" :class="bgClass">
-	<div class="p-6 flex justify-between">
-		<h1 class="text-3xl font-light tracking-wide">ASP.NET Core API Dashboard</h1>
-		<button class="bg-pink-600 hover:bg-pink-500 rounded pt-1 pb-1 pr-3 pl-3" v-on:click="toggle">Toggle</button>
-	</div>
-	<p v-if="pending" class="text-gray-300">Loading...</p>
-	<pre v-else-if="error" class="text-red-500 bg-gray-900 p-3">{{ JSON.stringify(error, null, 4) }}</pre>
-	<table v-else class="table">
-		<thead>
-		<tr>
-			<th>Method</th>
-			<th>Path</th>
-			<th>Return</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr v-for="endpoint in endpoints">
-			<td>
-				<span class="method-badge" :class="endpoint.httpMethod?.toLowerCase() ?? 'unknown'"></span>
-				<b>{{ endpoint.httpMethod }}</b>
-			</td>
-			<td>{{ endpoint.relativePath }}</td>
-			<td>{{ getTypeName(endpoint.returnsDefinition.typeDefinition.typeCode) }}</td>
-		</tr>
-		</tbody>
-	</table>
+	<main style="transition-property: filter" class="duration-300" :class="bgClass">
+		<div class="p-6 flex justify-between">
+			<h1 class="text-3xl font-light tracking-wide">ASP.NET Core API Dashboard</h1>
+			<button class="bg-pink-600 hover:bg-pink-500 rounded pt-1 pb-1 pr-3 pl-3" v-on:click="toggle">Toggle</button>
+		</div>
+		<p v-if="pending" class="text-gray-300">Loading...</p>
+		<pre v-else-if="error" class="text-red-500 bg-gray-900 p-3">{{ JSON.stringify(error, null, 4) }}</pre>
+		<table v-else class="table">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Path</th>
+					<th>Return</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="endpoint in endpoints">
+					<td>
+						<span class="method-badge" :class="endpoint.httpMethod?.toLowerCase() ?? 'unknown'"></span>
+						<b>{{ endpoint.httpMethod }}</b>
+					</td>
+					<td>{{ endpoint.relativePath }}</td>
+					<td>{{ getTypeName(endpoint.returnsDefinition.typeDefinition.typeCode) }}</td>
+				</tr>
+			</tbody>
+		</table>
 
-	<Modal ref="modal"></Modal>
-</main>
+		<Modal ref="modal"></Modal>
+	</main>
 </template>
 
 <script lang="ts" setup>
@@ -38,8 +38,7 @@ const config = useRuntimeConfig().public;
 const modal = ref(null);
 const bgClass = computed(() => ({ "blur-sm": modal.value && modal.value.show }));
 
-function toggle()
-{
+function toggle() {
 	modal.value.toggle();
 }
 

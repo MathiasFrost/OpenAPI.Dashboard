@@ -1,20 +1,16 @@
-export interface HTTPConfig
-{
+export interface HTTPConfig {
 	headers: Headers;
 }
 
-export function defaultHTTPConfig(): HTTPConfig
-{
+export function defaultHTTPConfig(): HTTPConfig {
 	return {
 		headers: new Headers()
 	};
 }
 
-export default function ()
-{
+export default function () {
 	const config = ref<HTTPConfig>(defaultHTTPConfig());
-	onUnmounted(() =>
-	{
+	onUnmounted(() => {
 		const str = window.localStorage.getItem("http_config");
 		if (!str) {
 			return;
