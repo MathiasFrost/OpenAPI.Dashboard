@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getTypeName } from "./models/TypeCode";
-	import type { EndpointDefinition } from "./models/EndpointDefinition";
+	import { getTypeName } from "$core/models/TypeCode";
+	import type { EndpointDefinition } from "$core/models/EndpointDefinition";
 	import Modal from "$core/Modal.svelte";
 
 	let show = false;
@@ -41,7 +41,7 @@
 		<tbody>
 			{#await promise}
 				<tr>
-					<td colspan="3" class="text-gray-300">Loading...</td>
+					<td colspan="3" class="text-gray-300 p-3">Loading...</td>
 				</tr>
 			{:then endpoints}
 				{#each endpoints as endpoint}
@@ -57,7 +57,7 @@
 			{:catch e}
 				<tr>
 					<td colspan="3">
-						<pre class="text-red-500 bg-gray-900 p-3">{e.message}</pre>
+						<pre class="text-red-500 p-3">{e.message}</pre>
 					</td>
 				</tr>
 			{/await}
@@ -68,34 +68,34 @@
 </main>
 
 <style lang="scss">
-	@use "var.scss";
+	@use "../style/var";
 
 	.table {
 		width: 100%;
 		border-collapse: collapse;
 
 		tr {
-			background-color: secondary;
+			background-color: var.$secondary;
 
 			&:last-child {
 				td {
-					border-bottom-color: muted;
+					border-bottom-color: var.$muted;
 				}
 			}
 		}
 
 		tbody {
 			tr:hover {
-				background-color: secondary-light;
+				background-color: var.$secondary-light;
 			}
 		}
 
 		th {
 			font-size: smaller;
 			text-align: left;
-			color: muted;
-			border-color: dim;
-			border-bottom-color: muted;
+			color: var.$muted;
+			border-color: var.$dim;
+			border-bottom-color: var.$muted;
 			border-style: solid;
 			border-bottom-width: 2px;
 			border-top-width: 1px;
@@ -113,7 +113,7 @@
 
 		td {
 			font-size: small;
-			border: 1px solid dim;
+			border: 1px solid var.$dim;
 			border-right-style: none;
 
 			&:first-child {

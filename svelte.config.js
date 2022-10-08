@@ -10,7 +10,8 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$core: "src/core"
+			$core: "src/core",
+			$style: "src/style"
 		}
 	}
 };
