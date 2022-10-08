@@ -1,4 +1,4 @@
-import type { TypeCode } from "./TypeCode";
+import type { TypeCode } from "$core/models/TypeCode";
 
 export interface TypeDefinition {
 	typeCode: TypeCode;
@@ -7,7 +7,7 @@ export interface TypeDefinition {
 
 	isEnum: boolean;
 
-	validValues: (any | null)[];
+	validValues: (unknown | null)[];
 
 	properties: TypeDefinition[];
 }

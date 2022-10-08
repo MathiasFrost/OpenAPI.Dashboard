@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getTypeName } from "./models/TypeCode";
 	import type { EndpointDefinition } from "./models/EndpointDefinition";
-	import Modal from "./Modal.svelte";
+	import Modal from "$core/Modal.svelte";
 
-	let show: boolean = false;
+	let show = false;
 
 	function toggle(): void {
 		show = !show;
@@ -25,18 +25,25 @@
 	<button class="bg-slate-900 hover:bg-slate-800 p-3 rounded" on:click={() => (promise = fetchEndpoints())}>
 		Refetch
 	</button>
-	{#await promise}
-		<p class="text-gray-300">Loading...</p>
-	{:then endpoints}
-		<table class="table">
-			<thead>
+	<table class="table">
+		<colgroup>
+			<col class="w-20" />
+			<col class="w-60" />
+			<col class="w-20" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Method</th>
+				<th>Path</th>
+				<th>Return</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#await promise}
 				<tr>
-					<th>Method</th>
-					<th>Path</th>
-					<th>Return</th>
+					<td colspan="3" class="text-gray-300">Loading...</td>
 				</tr>
-			</thead>
-			<tbody>
+			{:then endpoints}
 				{#each endpoints as endpoint}
 					<tr>
 						<td>
@@ -47,11 +54,15 @@
 						<td>{getTypeName(endpoint.returnsDefinition.typeDefinition.typeCode)}</td>
 					</tr>
 				{/each}
-			</tbody>
-		</table>
-	{:catch e}
-		<pre class="text-red-500 bg-gray-900 p-3">{e.message}</pre>
-	{/await}
+			{:catch e}
+				<tr>
+					<td colspan="3">
+						<pre class="text-red-500 bg-gray-900 p-3">{e.message}</pre>
+					</td>
+				</tr>
+			{/await}
+		</tbody>
+	</table>
 
 	<Modal bind:show />
 </main>

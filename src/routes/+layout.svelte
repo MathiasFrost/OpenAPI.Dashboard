@@ -3,5 +3,5 @@
 </main>
 
 <style lang="scss">
-	@import "../app.scss";
+	@import "../app";
 </style>
