@@ -9,10 +9,9 @@ $muted: rgb(83 86 87);
 $dim: rgb(42 44 44);
 $secondary: rgb(13 16 19);
 $secondary-light: color.adjust($secondary, $lightness: 3%);
-
 $accents: (
-	"green": rgb(56, 206, 96),
-	"pink": rgb(183, 41, 199)
+	"green": rgb(56 206 96),
+	"pink": rgb(183 41 199)
 );
 
 // Sizes

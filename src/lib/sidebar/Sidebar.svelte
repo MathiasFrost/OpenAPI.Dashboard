@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fly, fade } from "svelte/transition";
+	import { fly } from "svelte/transition";
 	import { onDestroy } from "svelte";
 	import type { EndpointDefinition } from "$lib/core/models/EndpointDefinition";
 
@@ -45,15 +45,13 @@
 <svelte:window on:keydown={handle_keydown} />
 
 {#if endpoint}
-	<div transition:fly={{ x: 200, duration: 150 }}>
-		<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-			<div class="header">
-				<h4 class="sidebar-title">{endpoint.httpMethod}: {endpoint.relativePath}</h4>
-				<button class="btn-pink" on:click={close}>Close</button>
-			</div>
-			<hr />
-			<slot />
+	<div transition:fly={{ x: 200, duration: 150 }} class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+		<div class="header">
+			<h4 class="sidebar-title">{endpoint.httpMethod}: {endpoint.relativePath}</h4>
+			<button class="btn-pink" on:click={close}>Close</button>
 		</div>
+		<hr />
+		<slot />
 	</div>
 {/if}
 
@@ -71,7 +69,7 @@
 	}
 
 	.modal {
-		position: fixed !important;
+		position: fixed;
 		top: 0;
 		right: 0;
 		height: 100vh;

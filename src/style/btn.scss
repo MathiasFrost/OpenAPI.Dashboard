@@ -11,6 +11,7 @@
 		background-color: $color;
 		transition-property: background-color;
 		transition-duration: 150ms;
+
 		&:hover {
 			background-color: color.adjust($color, $lightness: 10%);
 		}
