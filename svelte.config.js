@@ -5,15 +5,11 @@ import preprocess from "svelte-preprocess";
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess({
-		scss: {
-			includePaths: ["src"]
-		}
-	}),
+	preprocess: preprocess(),
 	kit: {
 		adapter: adapter(),
 		alias: {
-			$core: "./src/core"
+			$core: "src/core"
 		}
 	}
 };

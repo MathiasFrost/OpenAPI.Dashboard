@@ -3,5 +3,5 @@
 </main>
 
 <style lang="scss" global>
-	@import "app";
+	@import "src/app";
 </style>
