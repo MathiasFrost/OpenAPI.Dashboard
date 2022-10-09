@@ -1,0 +1,18 @@
+@use "sass:color";
+
+@use "src/style/var";
+
+@each $accent, $color in var.$accents {
+	.btn-#{$accent} {
+		padding: 0.5rem 1rem;
+		cursor: pointer;
+		border-radius: 0.1rem;
+		border: none;
+		background-color: $color;
+		transition-property: background-color;
+		transition-duration: 150ms;
+		&:hover {
+			background-color: color.adjust($color, $lightness: 10%);
+		}
+	}
+}

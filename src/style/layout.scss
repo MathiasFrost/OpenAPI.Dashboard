@@ -1,0 +1,7 @@
+@use "src/style/var";
+
+@each $name, $percent in var.$percentages {
+	.container-#{$name} {
+		padding: (1rem * $percent) (2rem * $percent);
+	}
+}

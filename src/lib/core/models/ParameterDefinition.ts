@@ -1,5 +1,5 @@
-import type { LengthDefinition } from "$core/models/LengthDefinition";
-import type { TypeDefinition } from "$core/models/TypeDefinition";
+import type { LengthDefinition } from "$lib/core/models/LengthDefinition";
+import type { TypeDefinition } from "$lib/core/models/TypeDefinition";
 
 export interface ParameterDefinition {
 	name: string;

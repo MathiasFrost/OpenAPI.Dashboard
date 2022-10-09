@@ -1,5 +1,5 @@
-import type { ParameterDefinition } from "$core/models/ParameterDefinition";
-import type { ReturnDefinition } from "$core/models/ReturnDefinition";
+import type { ParameterDefinition } from "$lib/core/models/ParameterDefinition";
+import type { ReturnDefinition } from "$lib/core/models/ReturnDefinition";
 
 export interface EndpointDefinition {
 	relativePath: string | null;

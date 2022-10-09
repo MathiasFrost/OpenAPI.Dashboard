@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { getTypeName } from "$core/models/TypeCode";
-	import type { EndpointDefinition } from "$core/models/EndpointDefinition";
-	import Modal from "$core/Modal.svelte";
+	import type { EndpointDefinition } from "$lib/core/models/EndpointDefinition";
+	import { getTypeName } from "$lib/core/models/TypeCode";
 
-	let show = false;
-
-	function toggle(): void {
-		show = !show;
-	}
+	export let endpoint: EndpointDefinition | null;
 
 	async function fetchEndpoints(): Promise<EndpointDefinition[]> {
 		const res = await fetch("http://localhost:5000/V1/Test/Endpoints");
@@ -17,58 +12,50 @@
 	let promise: Promise<EndpointDefinition[]> = fetchEndpoints();
 </script>
 
-<main style="transition-property: filter" class="duration-300" class:bgClass={show}>
-	<div class="p-6 flex justify-between">
-		<h1 class="text-3xl font-light tracking-wide">ASP.NET Core API Dashboard</h1>
-		<button class="bg-pink-600 hover:bg-pink-500 rounded pt-1 pb-1 pr-3 pl-3" on:click={toggle}>Toggle</button>
-	</div>
-	<button class="bg-slate-900 hover:bg-slate-800 p-3 rounded" on:click={() => (promise = fetchEndpoints())}>
-		Refetch
-	</button>
-	<table class="table">
-		<colgroup>
-			<col class="w-20" />
-			<col class="w-60" />
-			<col class="w-20" />
-		</colgroup>
-		<thead>
+<button class="btn-pink m-1" style="float: right;" on:click={() => (promise = fetchEndpoints())}>Refetch</button>
+<table class="table">
+	<colgroup>
+		<col class="w-20" />
+		<col class="w-60" />
+		<col class="w-20" />
+	</colgroup>
+	<thead>
+		<tr>
+			<th>Method</th>
+			<th>Path</th>
+			<th>Return</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#await promise}
 			<tr>
-				<th>Method</th>
-				<th>Path</th>
-				<th>Return</th>
+				<td colspan="3" class="text-gray-300 p-3">Loading...</td>
 			</tr>
-		</thead>
-		<tbody>
-			{#await promise}
-				<tr>
-					<td colspan="3" class="text-gray-300 p-3">Loading...</td>
-				</tr>
-			{:then endpoints}
-				{#each endpoints as endpoint}
-					<tr>
-						<td>
-							<span class={"method-badge" + (endpoint.httpMethod?.toLowerCase() ?? "unknown")} />
-							<b>{endpoint.httpMethod}</b>
-						</td>
-						<td>{endpoint.relativePath}</td>
-						<td>{getTypeName(endpoint.returnsDefinition.typeDefinition.typeCode)}</td>
-					</tr>
-				{/each}
-			{:catch e}
-				<tr>
-					<td colspan="3">
-						<pre class="text-red-500 p-3">{e.message}</pre>
+		{:then endpoints}
+			{#each endpoints as endpointItem}
+				{@const badge = endpointItem.httpMethod?.toLowerCase() ?? "unknown"}
+				{@const codeName = getTypeName(endpointItem.returnsDefinition.typeDefinition.typeCode)}
+				<tr on:click={() => (endpoint = endpointItem)}>
+					<td>
+						<span class={`method-badge ${badge}`} />
+						<b>{endpointItem.httpMethod}</b>
 					</td>
+					<td>{endpointItem.relativePath}</td>
+					<td>{codeName}</td>
 				</tr>
-			{/await}
-		</tbody>
-	</table>
-
-	<Modal bind:show />
-</main>
+			{/each}
+		{:catch e}
+			<tr>
+				<td colspan="3">
+					<pre class="text-red-500 p-3">{e.message}</pre>
+				</td>
+			</tr>
+		{/await}
+	</tbody>
+</table>
 
 <style lang="scss">
-	@use "../style/var";
+	@use "src/style/var";
 
 	.table {
 		width: 100%;

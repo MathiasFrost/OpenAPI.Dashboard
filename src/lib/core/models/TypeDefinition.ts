@@ -1,4 +1,4 @@
-import type { TypeCode } from "$core/models/TypeCode";
+import type { TypeCode } from "$lib/core/models/TypeCode";
 
 export interface TypeDefinition {
 	typeCode: TypeCode;

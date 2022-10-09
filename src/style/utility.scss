@@ -1,0 +1,44 @@
+@use "sass:list";
+@use "sass:map";
+@use "src/style/var";
+
+$sides: (
+	"t": "top",
+	"b": "bottom",
+	"r": "right",
+	"l": "left"
+);
+
+.m-0 {
+	margin: 0 !important;
+}
+.p-0 {
+	padding: 0 !important;
+}
+
+@each $s, $side in $sides {
+	.m#{$s}-0 {
+		margin-#{$side}: 0 !important;
+	}
+	.p#{$s}-0 {
+		padding-#{$side}: 0 !important;
+	}
+}
+
+@for $i from 1 through list.length(var.$sizes) {
+	.m-#{$i} {
+		margin: list.nth(var.$sizes, $i);
+	}
+	.p-#{$i} {
+		padding: list.nth(var.$sizes, $i);
+	}
+
+	@each $s, $side in $sides {
+		.p#{$s}-#{$i} {
+			padding-#{$side}: list.nth(var.$sizes, $i);
+		}
+		.m#{$s}-#{$i} {
+			margin-#{$side}: list.nth(var.$sizes, $i);
+		}
+	}
+}
