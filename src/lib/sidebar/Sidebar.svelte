@@ -7,7 +7,7 @@
 
 	let modal: HTMLDivElement;
 
-	function handle_keydown(e: KeyboardEvent) {
+	function keydown(e: KeyboardEvent) {
 		if (e.key === "Escape") {
 			close();
 			return;
@@ -42,7 +42,7 @@
 	}
 </script>
 
-<svelte:window on:keydown={handle_keydown} />
+<svelte:window on:keydown={keydown} />
 
 {#if endpoint}
 	<div transition:fly={{ x: 200, duration: 150 }} class="modal" role="dialog" aria-modal="true" bind:this={modal}>

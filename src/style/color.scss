@@ -1,0 +1,15 @@
+@use "src/style/var";
+
+@each $name, $color in var.$accents {
+	.color-#{$name} {
+		color: $color;
+	}
+
+	.bg-#{$name} {
+		background-color: $color;
+	}
+}
+
+.color-muted {
+	color: var.$muted;
+}

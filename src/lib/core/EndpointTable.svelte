@@ -12,47 +12,52 @@
 	let promise: Promise<EndpointDefinition[]> = fetchEndpoints();
 </script>
 
-<button class="btn-pink m-1" style="float: right;" on:click={() => (promise = fetchEndpoints())}>Refetch</button>
-<table class="table">
-	<colgroup>
-		<col class="w-20" />
-		<col class="w-60" />
-		<col class="w-20" />
-	</colgroup>
-	<thead>
-		<tr>
-			<th>Method</th>
-			<th>Path</th>
-			<th>Return</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#await promise}
+<button class="btn-pink m-1" on:click={() => (promise = fetchEndpoints())}>Refetch</button>
+<div style="overflow-x: auto;">
+	<table class="table">
+		<colgroup>
+			<col class="col-10" />
+			<col class="col-60" />
+			<col class="col-20" />
+		</colgroup>
+		<thead>
 			<tr>
-				<td colspan="3" class="text-gray-300 p-3">Loading...</td>
+				<th>Method</th>
+				<th>Path</th>
+				<th>Return</th>
 			</tr>
-		{:then endpoints}
-			{#each endpoints as endpointItem}
-				{@const badge = endpointItem.httpMethod?.toLowerCase() ?? "unknown"}
-				{@const codeName = getTypeName(endpointItem.returnsDefinition.typeDefinition.typeCode)}
-				<tr on:click={() => (endpoint = endpointItem)}>
-					<td>
-						<span class={`method-badge ${badge}`} />
-						<b>{endpointItem.httpMethod}</b>
+		</thead>
+		<tbody>
+			{#await promise}
+				<tr>
+					<td colspan="3" class="color-muted p-6">
+						<p>Loading...</p>
 					</td>
-					<td>{endpointItem.relativePath}</td>
-					<td>{codeName}</td>
 				</tr>
-			{/each}
-		{:catch e}
-			<tr>
-				<td colspan="3">
-					<pre class="text-red-500 p-3">{e.message}</pre>
-				</td>
-			</tr>
-		{/await}
-	</tbody>
-</table>
+			{:then endpoints}
+				{#each endpoints as endpointItem}
+					{@const badge = endpointItem.httpMethod?.toLowerCase() ?? "unknown"}
+					{@const codeName = getTypeName(endpointItem.returnsDefinition.typeDefinition.typeCode)}
+
+					<tr on:click={() => (endpoint = endpointItem)}>
+						<td>
+							<span class={`method-badge ${badge}`} />
+							<b>{endpointItem.httpMethod}</b>
+						</td>
+						<td>{endpointItem.relativePath}</td>
+						<td>{codeName}</td>
+					</tr>
+				{/each}
+			{:catch e}
+				<tr>
+					<td colspan="3">
+						<pre class="color-red p-3">{e.message}</pre>
+					</td>
+				</tr>
+			{/await}
+		</tbody>
+	</table>
+</div>
 
 <style lang="scss">
 	@use "src/style/var";

@@ -43,3 +43,12 @@ $sides: (
 		}
 	}
 }
+
+$i: 10;
+@while $i <= 100 {
+	.col-#{$i} {
+		width: $i * 1%;
+		min-width: $i * 0.6rem + 6rem;
+	}
+	$i: $i + 10;
+}

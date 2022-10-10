@@ -7,3 +7,7 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+
+declare interface ImportMetaEnv {
+	backendUrl?: string;
+}
