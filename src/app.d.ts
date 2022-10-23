@@ -9,5 +9,5 @@ declare namespace App {
 }
 
 declare interface ImportMetaEnv {
-	backendUrl?: string;
+	VITE_BACKEND_URL?: string;
 }

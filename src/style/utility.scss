@@ -50,5 +50,6 @@ $i: 10;
 		width: $i * 1%;
 		min-width: $i * 0.6rem + 6rem;
 	}
+
 	$i: $i + 10;
 }

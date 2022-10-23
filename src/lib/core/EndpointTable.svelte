@@ -1,18 +1,14 @@
 <script lang="ts">
 	import type { EndpointDefinition } from "$lib/core/models/EndpointDefinition";
 	import { getTypeName } from "$lib/core/models/TypeCode";
+	import { endpointsStore } from "$lib/stores";
 
 	export let endpoint: EndpointDefinition | null;
-
-	async function fetchEndpoints(): Promise<EndpointDefinition[]> {
-		const res = await fetch("http://localhost:5000/V1/Test/Endpoints");
-		return await res.json();
-	}
-
-	let promise: Promise<EndpointDefinition[]> = fetchEndpoints();
 </script>
 
-<button class="btn-pink m-1" on:click={() => (promise = fetchEndpoints())}>Refetch</button>
+<button class="btn-pink m-1" on:click={() => endpointsStore.reFetch()} disabled={$endpointsStore === undefined}>
+	Refetch
+</button>
 <div style="overflow-x: auto;">
 	<table class="table">
 		<colgroup>
@@ -28,14 +24,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#await promise}
+			{#if $endpointsStore === undefined}
 				<tr>
 					<td colspan="3" class="color-muted p-6">
 						<p>Loading...</p>
 					</td>
 				</tr>
-			{:then endpoints}
-				{#each endpoints as endpointItem}
+			{:else if $endpointsStore instanceof Error}
+				<tr>
+					<td colspan="3">
+						<pre class="color-red p-3">{$endpointsStore.message}</pre>
+					</td>
+				</tr>
+			{:else}
+				{#each $endpointsStore as endpointItem}
 					{@const badge = endpointItem.httpMethod?.toLowerCase() ?? "unknown"}
 					{@const codeName = getTypeName(endpointItem.returnsDefinition.typeDefinition.typeCode)}
 
@@ -48,13 +50,7 @@
 						<td>{codeName}</td>
 					</tr>
 				{/each}
-			{:catch e}
-				<tr>
-					<td colspan="3">
-						<pre class="color-red p-3">{e.message}</pre>
-					</td>
-				</tr>
-			{/await}
+			{/if}
 		</tbody>
 	</table>
 </div>
