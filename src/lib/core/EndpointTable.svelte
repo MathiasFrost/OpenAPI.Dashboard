@@ -6,8 +6,12 @@
 	export let endpoint: EndpointDefinition | null;
 </script>
 
-<button class="btn-pink m-1" on:click={() => endpointsStore.reFetch()} disabled={$endpointsStore === undefined}>
-	Refetch
+<button
+	class="btn-pink m-1"
+	on:click={() => endpointsStore.refresh()}
+	disabled={$endpointsStore === undefined}
+>
+	Refresh
 </button>
 <div style="overflow-x: auto;">
 	<table class="table">
@@ -33,13 +37,17 @@
 			{:else if $endpointsStore instanceof Error}
 				<tr>
 					<td colspan="3">
-						<pre class="color-red p-3">{$endpointsStore.message}</pre>
+						<pre
+							class="color-red p-3">{$endpointsStore.message}</pre>
 					</td>
 				</tr>
 			{:else}
 				{#each $endpointsStore as endpointItem}
-					{@const badge = endpointItem.httpMethod?.toLowerCase() ?? "unknown"}
-					{@const codeName = getTypeName(endpointItem.returnsDefinition.typeDefinition.typeCode)}
+					{@const badge =
+						endpointItem.httpMethod?.toLowerCase() ?? "unknown"}
+					{@const codeName = getTypeName(
+						endpointItem.returnsDefinition.typeDefinition.typeCode
+					)}
 
 					<tr on:click={() => (endpoint = endpointItem)}>
 						<td>
