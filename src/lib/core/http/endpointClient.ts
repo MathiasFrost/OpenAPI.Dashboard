@@ -6,8 +6,8 @@ export class EndpointClient extends HttpClientBase {
 		super(baseAddress);
 	}
 
-	public async getEndpoints(): Promise<EndpointDefinition[]> {
-		const res = await this.get("V1/Test/Endpoints");
-		return EndpointDefinition.deserializeArray(res);
+	public async getApiDefinition(): Promise<EndpointDefinition[]> {
+		const res = await this.get("swagger/v1/swagger.json");
+		return await res.ensureSuccess().getFromJsonArray((el) => new EndpointDefinition(el));
 	}
 }

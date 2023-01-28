@@ -1,40 +1,23 @@
-import type { ParameterDefinition } from "$lib/core/models/ParameterDefinition";
-import type { ReturnDefinition } from "$lib/core/models/ReturnDefinition";
+import { ParameterDefinition } from "$lib/core/models/ParameterDefinition";
+import { ReturnDefinition } from "$lib/core/models/ReturnDefinition";
+import { Unknown } from "../uncertainty/Unknown";
+
+export type HTTPMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS" | null
 
 export class EndpointDefinition {
 	relativePath: string | null;
 
-	httpMethod: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS" | null;
+	httpMethod: HTTPMethod;
 
 	parameters: ParameterDefinition[];
 
 	returnsDefinition: ReturnDefinition;
 
-	public constructor(json: any) {
-		if (typeof json !== "object" || json === null) {
-			throw new Error("Did not get an object");
-		}
-		this.relativePath = this.throwIfNotValid(["string"])
-	}
+	public constructor(json: unknown) {
+		this.relativePath = new Unknown<string | null>(json.relativePath).ensureType("string", null).value;
+		this.httpMethod = new Unknown<HTTPMethod>(json.httpMethod).ensureType("string", null).ensureValue("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", null).value;
+		this.parameters = ParameterDefinition.deserializeArray(json.parameters);
+		this.returnsDefinition = new ReturnDefinition(json);
 
-	private throwIfNotValid<T>(value: any, allowedTypes: string[], allowedValues: any[]): T {
-		if (!allowedTypes.includes(typeof value)) {
-			throw new Error("Value was not expected type");
-		}
-		if (!allowedValues.includes(value)) {
-			throw new Error("Value was not out of range");
-		}
-		return value;
-	}
-
-	public static async deserializeArray(response: Response) {
-		if (!response.ok) {
-			throw new Error("Not success");
-		}
-		const json = await response.json();
-		if (!Array.isArray(json)) {
-			throw new Error("Did not get an array");
-		}
-		return json.map(el => new EndpointDefinition(el));
 	}
 }

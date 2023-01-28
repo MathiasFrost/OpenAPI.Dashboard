@@ -7,4 +7,4 @@ const _endpointClient = new EndpointClient(import.meta.env.VITE_BACKEND_URL);
 
 export const endpointClient = writable<EndpointClient>(_endpointClient);
 
-export const endpointsStore = writableAsync<EndpointDefinition[]>(_endpointClient.getEndpoints.bind(_endpointClient));
+export const endpointsStore = writableAsync<EndpointDefinition[]>(_endpointClient.getApiDefinition.bind(_endpointClient));
