@@ -5,6 +5,5 @@ export class ReturnDefinition {
 
 	mimeTypes: string[];
 
-	public constructor(json: any) {
-	}
+	public constructor(json: any) {}
 }

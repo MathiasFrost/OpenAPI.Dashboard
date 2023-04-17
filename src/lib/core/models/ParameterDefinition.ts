@@ -14,13 +14,12 @@ export class ParameterDefinition {
 
 	lengthConstraints: LengthDefinition[];
 
-	public constructor(json: any) {
-	}
+	public constructor(json: any) {}
 
 	public static deserializeArray(json: any): ParameterDefinition[] {
 		if (!Array.isArray(json)) {
 			throw new Error("Was not array");
 		}
-		return json.map(el => new ParameterDefinition(el));
+		return json.map((el) => new ParameterDefinition(el));
 	}
 }
