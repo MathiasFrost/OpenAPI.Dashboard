@@ -1,4 +1,4 @@
-@use "src/style/var";
+@use 'src/style/var';
 
 @each $name, $percent in var.$percentages {
 	.container-#{$name} {

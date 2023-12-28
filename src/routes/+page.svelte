@@ -1,28 +1,29 @@
 <script lang="ts">
-	import EndpointTable from "$lib/core/EndpointTable.svelte";
-	import { numberSerializer, stringSerializer } from "@maal/svelte-data/sync";
-	import type { EndpointDefinition } from "$lib/core/models/EndpointDefinition.js";
-	import Sidebar from "$lib/sidebar/Sidebar.svelte";
-	import { onMount } from "svelte";
-	import TableHeader from "@maal/svelte-data/TableHeader.svelte";
+	import { PUBLIC_BACKEND_URL } from '$env/static/public';
+	import EndpointTable from '$lib/components/EndpointTable.svelte';
+	import { OpenApiDocument } from '$lib/models/OpenApiDocument.js';
+	import Sidebar from '$lib/components/Sidebar.svelte';
 
-	let endpoint: EndpointDefinition | null = null;
-
-	onMount(async () => {
-		const res = await fetch("http://localhost:5000/WeatherForecast", { redirect: "manual" });
-	});
+	async function getOpenApiDocument(): Promise<OpenApiDocument> {
+		const res = await fetch(`${PUBLIC_BACKEND_URL}openapi`);
+		return new OpenApiDocument(await res.json());
+	}
 </script>
 
 <section>
-	<div class="container-md">
-		<h1 class="title">ASP.NET Core API Dashboard</h1>
-	</div>
-
-	<TableHeader header="asd" />
-	<EndpointTable bind:endpoint />
-	<Sidebar bind:endpoint />
-
-	<form action="http://localhost:5000/WeatherForecast">
-		<button>go</button>
-	</form>
+	{#await getOpenApiDocument()}
+		<div class="color-muted">Loading...</div>
+	{:then openApiDocument}
+		<div class="container-md">
+			<h1 class="title">{openApiDocument.info.title} {openApiDocument.info.version}</h1>
+			<small class="color-muted">OpenAPI definition</small>
+		</div>
+		<EndpointTable {openApiDocument} />
+		<Sidebar {openApiDocument} />
+	{:catch e}
+		<div style="color: crimson;">
+			{e.message}
+			<pre><code>{e.stack}</code></pre>
+		</div>
+	{/await}
 </section>

@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 
 // Colors
 $white: rgb(255 255 255);
@@ -10,15 +10,15 @@ $dim: rgb(42 44 44);
 $secondary: rgb(13 16 19);
 $secondary-light: color.adjust($secondary, $lightness: 3%);
 $accents: (
-	"green": rgb(56 206 96),
-	"pink": rgb(183 41 199),
-	"red": rgb(199 41 52)
+	'green': rgb(56 206 96),
+	'pink': rgb(183 41 199),
+	'red': rgb(199 41 52)
 );
 
 // Sizes
 $sizes: 0.5rem, 1rem, 1.5rem, 2rem, 2.5rem, 3rem;
 $percentages: (
-	"sm": 0.3,
-	"md": 0.6,
-	"lg": 1
+	'sm': 0.3,
+	'md': 0.6,
+	'lg': 1
 );

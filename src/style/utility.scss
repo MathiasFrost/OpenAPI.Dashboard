@@ -1,12 +1,12 @@
-@use "sass:list";
-@use "sass:map";
-@use "src/style/var";
+@use 'sass:list';
+@use 'sass:map';
+@use 'src/style/var';
 
 $sides: (
-	"t": "top",
-	"b": "bottom",
-	"r": "right",
-	"l": "left"
+	't': 'top',
+	'b': 'bottom',
+	'r': 'right',
+	'l': 'left'
 );
 
 .m-0 {

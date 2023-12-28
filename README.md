@@ -1,8 +1,8 @@
-# AspNetCore.Dashboard.Browser - _SvelteKit_
+# OpenAPI.Dashboard - _SvelteKit_
 
-Simple, clean API Definition UI for ASP.NET Core
+Simple, clean API Definition UI
 
-Backend: [AspNetCore.Dashboard](https://github.com/MathiasFrost/AspNetCore.Dashboard)
+Backend: [OpenAPI.Generate](https://github.com/MathiasFrost/OpenAPI.Generate)
 
 ## Committing
 
