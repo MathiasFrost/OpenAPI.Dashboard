@@ -23,7 +23,7 @@
 	}
 
 	function getId(method: string, path: string) {
-		return `${method}${path}`.replaceAll(/[\/{}:]/g, '_');
+		return `${method}${path}`.replaceAll(/[/{}:]/g, '_');
 	}
 </script>
 
@@ -31,7 +31,7 @@
 	{#each Object.keys(openApiDocument.paths) as path}
 		{@const methods = openApiDocument.paths[path]}
 		{#each Object.keys(methods) as method}
-			{@const o = methods[method]}
+			<!--{@const o = methods[method]}-->
 			<a
 				id={getId(method, path)}
 				class="card"

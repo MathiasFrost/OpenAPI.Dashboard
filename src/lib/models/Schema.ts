@@ -10,7 +10,7 @@ export class Schema {
 
 	public readonly properties?: Record<string, Property>;
 
-	public readonly additionalProperties: boolean | Schema | null = null;
+	public readonly additionalProperties?: boolean | Schema;
 
 	public readonly items?: Schema;
 

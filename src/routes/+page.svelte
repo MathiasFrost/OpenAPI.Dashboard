@@ -16,7 +16,7 @@
 	{:then openApiDocument}
 		<div class="container-md">
 			<h1 class="title">{openApiDocument.info.title} {openApiDocument.info.version}</h1>
-			<small class="color-muted">OpenAPI definition</small>
+			<small class="color-muted"><a href="{PUBLIC_BACKEND_URL}openapi">OpenAPI definition</a></small>
 		</div>
 		<EndpointTable {openApiDocument} />
 		<Sidebar {openApiDocument} />
@@ -27,3 +27,20 @@
 		</div>
 	{/await}
 </section>
+
+<style lang="scss">
+	@use '../style/var';
+
+	.color-muted {
+		a {
+			:not(&:hover) {
+				text-decoration: none;
+			}
+
+			&:visited,
+			&:hover {
+				color: var.$muted;
+			}
+		}
+	}
+</style>

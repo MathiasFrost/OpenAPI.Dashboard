@@ -8,7 +8,7 @@ export class Parameter {
 
 	public readonly style: string = '';
 
-	public readonly nullable: boolean = false;
+	public readonly required: boolean = false;
 
 	public readonly schema: Schema = new Schema();
 
@@ -18,7 +18,7 @@ export class Parameter {
 		this.name = ensureString(o.name);
 		this.in = ensureString(o.in);
 		this.style = ensureString(o.style);
-		this.nullable = 'nullable' in o ? ensureBoolean(o.nullable) : false;
+		this.required = 'required' in o ? ensureBoolean(o.required) : false;
 		this.schema = ensureObject(o.schema, (s) => new Schema(s));
 	}
 }
