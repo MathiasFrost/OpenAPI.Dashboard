@@ -60,8 +60,13 @@
 	$: updateSelected($page.url.searchParams);
 
 	function updateSelected(url: URLSearchParams): void {
-		currMethod = url.get('method');
-		currPath = url.get('path');
+		const newMethod = url.get('method');
+		const newPath = url.get('path');
+		if (newPath === currPath && newMethod === currMethod) return;
+
+		currPath = newPath;
+		currMethod = newMethod;
+		promise = null;
 		if (!currMethod || !currPath) {
 			selected = null;
 			return;
