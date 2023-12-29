@@ -177,7 +177,7 @@
 	<aside transition:fly={{ x: 200, duration: 150 }} class="modal" bind:this={modal}>
 		<div class="header {currMethod}">
 			<h3 class="sidebar-title">{currMethod?.toUpperCase()}: {currPath}</h3>
-			<a class="btn-pink" href="/" data-sveltekit-noscroll>Close</a>
+			<a class="btn-pink" href="?" data-sveltekit-noscroll>Close</a>
 		</div>
 		<form on:submit|preventDefault={execute} class="body" on:input={() => console.log('as')}>
 			{#if selected.parameters}

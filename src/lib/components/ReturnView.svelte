@@ -3,10 +3,6 @@
 
 	export let promise: Promise<ResponseModel> | null;
 
-	let downloader: HTMLAnchorElement | null = null;
-
-	let downloadData = '';
-
 	function preview(response: ResponseModel): void {
 		let tab: Window | null = null;
 		let url = '';
@@ -66,8 +62,6 @@
 		</div>
 	{/await}
 {/if}
-
-<a hidden href={downloadData} bind:this={downloader}>temp</a>
 
 <style lang="scss">
 	@use '../../style/var';

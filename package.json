@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "env-cmd -e development vite dev",
-		"build": "env-cmd -e release vite dev",
+		"build": "env-cmd -e release vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "env-cmd -e development svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
